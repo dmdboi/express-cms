@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Settings</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="POST" action="/dashboard/settings/update">
+            <div class="mb-3">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" value="{{user.username}}" required="">
+            </div>
+
+            <div class="mb-3">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{user.email}}" required="">
+            </div>
+
+            <div class="mb-3">
+                <label for="email">Role</label>
+                <select class="custom-select" name="category" id="category">
+                    <option value="admin">Admin</option>
+                    <option value="moderator">Moderator</option>
+                </select>
+            </div>
+
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Update Profile</button>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <div class="py-5">
+            <img src="{{user.image}}" class="img-fluid"/>
+        </div>
+        <form class="md-form" style="color: #757575;" role="form" id="imageUpload" enctype="multipart/form-data"
+            method="POST" action="/dashboard/settings/profile-image">
+            <div class="input-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="image" name="image"
+                        aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
+            </div>
+            <button class="btn btn-outline-primary btn-rounded btn-block mt-3" type="submit">Upload</button>
+        </form>
+    </div>
+</div>

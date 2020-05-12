@@ -1,0 +1,49 @@
+<div class="container-fluid" style="min-height: 750px;">
+    <div class="row">
+        <div class="col-md-6 pt-4">
+            <form class="md-form" style="color: #757575;" role="form" action="/blog/edit/{{post._id}}" method="POST">
+                <div class="form-group">
+                    <h4>Title</h4>
+                    <input type="text" id="title" name="title" class="form-control" value="{{post.title}}">
+                </div>
+                <div class="form-group">
+                    <h4>Category</h4>
+                    <select class="custom-select" name="category" id="category">
+                        <option value="Microblog">Microblog</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <h4>Feature Image URL</h4>
+                    <input type="text" id="image" name="image" class="form-control" value="{{post.image}}">
+                </div>
+                <div class="form-group">
+                    <h4>Content</h4>
+                    <textarea class="form-control rounded-0" id="markdown" name="markdown" rows="10">{{post.markdown}}</textarea>
+                </div>
+
+                <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"
+                    type="submit">Submit Post</button>
+            </form>
+        </div>
+        <div class="col-md-6 pt-4" style="overflow: auto;">
+            <div class="border rounded h-100" id="output">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.rawgit.com/showdownjs/showdown/1.0.2/dist/showdown.min.js"></script>
+
+    <script>
+        window.onload = function () {
+            var converter = new showdown.Converter();
+            var markdown = document.getElementById('markdown');
+            var output = document.getElementById('output');
+            var convertTextAreaToMarkdown = function () {
+                var markdownText = markdown.value;
+                html = converter.makeHtml(markdownText);
+                output.innerHTML = html;
+            };
+            markdown.addEventListener('input', convertTextAreaToMarkdown);
+            convertTextAreaToMarkdown();
+        };
+    </script>

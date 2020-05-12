@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Users</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    {{#each users}}
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-img-top text-center">
+                    <img src="{{this.image}}" class="img-fluid p-3"/>
+                </div>
+                <div class="card-body text-center">
+                    <h4 class="font-weight-bold">{{this.username}}</h4>
+                    <p>{{this.email}}</p>
+                    <p>{{this.role}}</p>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>

@@ -1,0 +1,40 @@
+<footer class="blog-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <form class="form-inline" id="newsletterForm">
+                    <p>Join the Mailing List.</p>
+                    <input type="email" class="form-control w-75" id="email" name="email" placeholder="Email Address"/>
+                    <button type="submit" class="btn btn-outline-info">Join</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a
+                    href="https://twitter.com/mdo">@mdo</a>.</p>
+                <p>
+                    <a href="#">Back to top</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    document.getElementById('newsletterForm').addEventListener('submit', newsletter);
+    
+    function newsletter(e) {
+        var email = e.target.elements[0].value;
+        e.preventDefault();
+        axios.post('/newsletter', {
+            email: email
+        })
+        .then(function (response) {
+            //Figure out what to do here.
+            console.log(response)
+        })
+        .catch(function (error) {
+            console.log(error)
+        });
+    }
+</script>

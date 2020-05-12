@@ -1,0 +1,71 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Images</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Upload Image
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    {{#each images}}
+    <div class="col-md-3">
+        <div class="card">
+            <img src="{{this.url}}" class="img-fluid" style="max-height: 360px">
+            <div class="card-body">
+                <h5 class="card-title">{{this.name}}</h5>
+                <a href="/dashboard/images/delete/{{this._id}}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="md-form" style="color: #757575;" role="form" id="imageUpload"
+                    enctype="multipart/form-data" method="POST">
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="blogImage" name="blogImage"
+                                ria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-primary btn-rounded btn-block mt-3" type="submit">Upload</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    document.getElementById('imageUpload').addEventListener('submit', image);
+
+    function image(e) {
+        var formData = new FormData();
+        var imagefile = document.querySelector('#blogImage');
+        formData.append("image", imagefile.files[0]);
+        console.log(imagefile)
+        axios.post('/dashboard/images/upload', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(function (response) {
+            location.reload()
+        })
+    }
+</script>

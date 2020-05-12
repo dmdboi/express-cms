@@ -1,0 +1,26 @@
+<div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+    <div class="col-md-6 px-0">
+        <h1 class="display-4 font-italic">Express CMS</h1>
+        <p class="lead my-3">A Content Management System with support for multiple Users, Image Upload and Live Markdown Editing.</p>
+        <p class="lead mb-0"><a href="https://github.com/dmdxv/express-cms" class="text-white font-weight-bold"><i class="fab fa-github fa-2x"></i></a></p>
+    </div>
+</div>
+
+<div class="row">
+    {{#each posts}}
+    <div class="col-lg-4 col-md-12 my-2">
+        <div class="card shadow">
+            <div class="card-img-top">
+                {{#if this.image}}
+                <img src="{{this.image}}" class="img-fluid" alt="Sample image">
+                {{/if}}
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">{{this.title}}</h4>
+                <p class="card-text">{{this.description}}</p>
+                <a href="/blog/post/{{this.slug}}" class="">Read more</a>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>

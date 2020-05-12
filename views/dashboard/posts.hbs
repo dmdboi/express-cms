@@ -1,0 +1,49 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Posts</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+            <a href="/blog/createPost" type="button" class="btn btn-sm btn-primary">+ New Post</a>
+        </div>
+    </div>
+</div>
+
+<div class="container border rounded">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Created</th>
+                <th>Public</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each posts}}
+            <tr>
+                <td class="pt-3 h5"><a href="/blog/post/{{this.slug}}">{{this.title}}</a></td>
+                <td class="pt-3 h5">{{this.category}}</td>
+                <td class="pt-3 h5">{{this.created_At}}</td>
+                <td>
+                    {{#if this.public}}
+                    <a class="btn btn-success text-white font-weight-bold" href="/dashboard/posts/public/{{this._id}}">Yes</a>
+                    {{else}}
+                    <a class="btn btn-danger text-white font-weight-bold" href="/dashboard/posts/private/{{this._id}}">No</a>
+                    {{/if}}
+                </td>
+                <th>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/post/edit/{{this._id}}">Edit</a>
+                            <a class="dropdown-item" href="/post/delete/{{this.slug}}">Delete</a>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
